@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -28,7 +28,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
-    // Route::get('user', UserController::class, 'index')->name('user.index');
-    // Route::get('user', UserController::class);
-    // Route::resource('user', UserController::class);
 });
