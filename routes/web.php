@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClubAdultosController;
+use App\Http\Controllers\ClubDeportivoController;
+use App\Http\Controllers\JuntaVecinosController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +29,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route::resource('users', UserController::class);
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', UserController::class);
+    Route::resource('juntas_vecinos', JuntaVecinosController::class);
+    Route::resource('clubes_deportivos', ClubDeportivoController::class);
+    Route::resource('clubes_adultos', ClubAdultosController::class);
 });
-
