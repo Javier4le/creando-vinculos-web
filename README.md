@@ -62,3 +62,87 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+
+
+## Installation
+
+composer require laravel/ui
+
+php artisan ui bootstrap --auth
+
+npm install && npm run dev
+
+
+# CRUD
+
+php artisan make:migration create_juntas_vecinos_table
+
+php artisan make:migration create_clubes_deportivos_table
+
+php artisan make:migration create_clubes_adultos_table
+
+
+
+Schema::create('juntas_vecinos', function (Blueprint $table) {
+     $table->id();
+     $table->string('unidad_vecinal');
+     $table->string('direccion');
+     $table->string('sector')->nullable();
+     $table->string('representante')->nullable();
+     $table->string('email')->nullable();
+     $table->string('horario')->nullable();
+     $table->timestamps();
+});
+
+Schema::create('clubes_deportivos', function (Blueprint $table) {
+     $table->id();
+     $table->string('nombre');
+     $table->string('direccion');
+     $table->string('sector')->nullable();
+     $table->string('email')->nullable();
+     $table->string('actividad')->nullable();
+     $table->timestamps();
+});
+
+Schema::create('clubes_adultos', function (Blueprint $table) {
+     $table->id();
+     $table->string('nombre');
+     $table->string('direccion');
+     $table->string('sector')->nullable();
+     $table->string('representante')->nullable();
+     $table->string('email')->nullable();
+     $table->string('actividad')->nullable();
+     $table->timestamps();
+});
+
+
+
+php artisan migrate
+
+
+
+php artisan make:crud juntas_vecinos
+php artisan make:crud clubes_deportivos
+php artisan make:crud clubes_adultos
+
+
+
+
+Route::resource('juntas_vecinos', [JuntaVecinosController::class]);
+Route::resource('clubes_deportivos', [ClubDeportivoController::class]);
+Route::resource('clubes_adultos', [ClubAdultoController::class]);
+
+
+
+@auth
+
+<a class="nav-link" href="{{ URL::to('juntas_vecinos') }}">{{ __('Juntas de Vecinos') }}</a>
+<a class="nav-link" href="{{ URL::to('clubes_deportivos') }}">{{ __('Clubes Deportivos') }}</a>
+<a class="nav-link" href="{{ URL::to('clubes_adultos') }}">{{ __('Clubes de Adultos') }}</a>
+
+@endauth
+
+
