@@ -14,16 +14,18 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Styles -->
+    @yield('styles')
+
     <!-- Leaflet -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
         crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css" /> --}}
+    {{-- <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
         integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         crossorigin=""></script>
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script type="text/javascript" src="node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script> --}}
 </head>
 
 <body>
@@ -44,7 +46,7 @@
                     <ul class="navbar-nav me-auto">
                         @auth
 
-                            <a class="nav-link" href="{{ URL::to('users') }}">{{ __('Users') }}</a>
+                            {{-- <a class="nav-link" href="{{ URL::to('users') }}">{{ __('Users') }}</a> --}}
                             <a class="nav-link" href="{{ URL::to('juntas_vecinos') }}">{{ __('Juntas de Vecinos') }}</a>
                             <a class="nav-link" href="{{ URL::to('clubes_deportivos') }}">{{ __('Clubes Deportivos') }}</a>
                             <a class="nav-link" href="{{ URL::to('clubes_adultos') }}">{{ __('Clubes de Adultos') }}</a>
@@ -92,10 +94,13 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @stack('scripts')
 </body>
 
 </html>

@@ -41,7 +41,7 @@
 										<th>Sector</th>
 										<th>Representante</th>
 										<th>Email</th>
-										<th>Actividad</th>
+										<th>Estado</th>
 
                                         <th></th>
                                     </tr>
@@ -56,7 +56,7 @@
 											<td>{{ $clubAdultos->sector }}</td>
 											<td>{{ $clubAdultos->representante }}</td>
 											<td>{{ $clubAdultos->email }}</td>
-											<td>{{ $clubAdultos->actividad }}</td>
+											<td>{{ $clubAdultos->estado }}</td>
 
                                             <td>
                                                 <form action="{{ route('clubes_adultos.destroy',$clubAdultos->id) }}" method="POST">

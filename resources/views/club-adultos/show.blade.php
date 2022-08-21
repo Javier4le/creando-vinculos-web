@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <strong>Actividad:</strong>
-                            {{ $clubAdultos->actividad }}
+                            {{ $clubAdultos->estado }}
                         </div>
 
                     </div>

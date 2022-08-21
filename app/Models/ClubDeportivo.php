@@ -34,7 +34,7 @@ class ClubDeportivo extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','direccion','sector','email','actividad'];
+    protected $fillable = ['nombre','direccion','sector','encargado','email','estado'];
 
     /**
      * The table associated with the model.

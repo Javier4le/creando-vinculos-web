@@ -16,7 +16,7 @@
                         <span class="card-title">Update Junta Vecinos</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('juntas_vecinos.update', $juntasVecino->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('juntas_vecinos.update', $juntaVecinos->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

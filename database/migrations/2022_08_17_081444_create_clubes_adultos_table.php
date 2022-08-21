@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('sector')->nullable();
             $table->string('representante')->nullable();
             $table->string('email')->nullable();
-            $table->string('actividad')->nullable();
+            $table->string('estado')->nullable();
             $table->timestamps();
         });
     }

@@ -39,8 +39,9 @@
 										<th>Nombre</th>
 										<th>Direccion</th>
 										<th>Sector</th>
+										<th>Encargado</th>
 										<th>Email</th>
-										<th>Actividad</th>
+										<th>Estado</th>
 
                                         <th></th>
                                     </tr>
@@ -53,8 +54,9 @@
 											<td>{{ $clubDeportivo->nombre }}</td>
 											<td>{{ $clubDeportivo->direccion }}</td>
 											<td>{{ $clubDeportivo->sector }}</td>
+											<td>{{ $clubDeportivo->encargado }}</td>
 											<td>{{ $clubDeportivo->email }}</td>
-											<td>{{ $clubDeportivo->actividad }}</td>
+											<td>{{ $clubDeportivo->estado }}</td>
 
                                             <td>
                                                 <form action="{{ route('clubes_deportivos.destroy',$clubDeportivo->id) }}" method="POST">

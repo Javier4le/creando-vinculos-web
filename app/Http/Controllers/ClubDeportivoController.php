@@ -106,4 +106,16 @@ class ClubDeportivoController extends Controller
         return redirect()->route('clubes_deportivos.index')
             ->with('success', 'ClubDeportivo deleted successfully');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apiIndex()
+    {
+        $clubesDeportivos = ClubDeportivo::all();
+
+        return $clubesDeportivos;
+    }
 }

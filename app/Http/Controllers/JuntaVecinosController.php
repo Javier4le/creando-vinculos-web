@@ -106,4 +106,16 @@ class JuntaVecinosController extends Controller
         return redirect()->route('juntas_vecinos.index')
             ->with('success', 'JuntaVecinos deleted successfully');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apiIndex()
+    {
+        $juntasVecinos = JuntaVecinos::all();
+
+        return $juntasVecinos;
+    }
 }

@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('direccion');
             $table->string('sector')->nullable();
+            $table->string('encargado')->nullable();
             $table->string('email')->nullable();
-            $table->string('actividad')->nullable();
+            $table->string('estado')->nullable();
             $table->timestamps();
         });
     }

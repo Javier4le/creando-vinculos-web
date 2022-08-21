@@ -106,4 +106,16 @@ class ClubAdultosController extends Controller
         return redirect()->route('clubes_adultos.index')
             ->with('success', 'ClubAdultos deleted successfully');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function apiIndex()
+    {
+        $clubesAdultos = ClubAdultos::all();
+
+        return $clubesAdultos;
+    }
 }

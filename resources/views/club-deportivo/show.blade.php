@@ -33,12 +33,16 @@
                             {{ $clubDeportivo->sector }}
                         </div>
                         <div class="form-group">
+                            <strong>Encargado:</strong>
+                            {{ $clubDeportivo->encargado }}
+                        </div>
+                        <div class="form-group">
                             <strong>Email:</strong>
                             {{ $clubDeportivo->email }}
                         </div>
                         <div class="form-group">
                             <strong>Actividad:</strong>
-                            {{ $clubDeportivo->actividad }}
+                            {{ $clubDeportivo->estado }}
                         </div>
 
                     </div>

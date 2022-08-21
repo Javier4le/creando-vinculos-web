@@ -35,7 +35,7 @@ class ClubAdultos extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','direccion','sector','representante','email','actividad'];
+    protected $fillable = ['nombre','direccion','sector','representante','email','estado'];
 
     /**
      * The table associated with the model.
