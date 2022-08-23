@@ -30,7 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function () {
     // Route::resource('users', UserController::class);
-    Route::resource('juntas_vecinos', JuntaVecinosController::class);
-    Route::resource('clubes_deportivos', ClubDeportivoController::class);
-    Route::resource('clubes_adultos', ClubAdultosController::class);
+    Route::resource('juntas_vecinos', JuntaVecinosController::class, ['parameters' => ['juntas_vecinos' => 'juntaVecinos']]);
+    Route::resource('clubes_deportivos', ClubDeportivoController::class, ['parameters' => ['clubes_deportivos' => 'clubDeportivo']]);
+    Route::resource('clubes_adultos', ClubAdultosController::class, ['parameters' => ['clubes_adultos' => 'clubAdultos']]);
 });

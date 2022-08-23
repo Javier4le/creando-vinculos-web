@@ -25,14 +25,15 @@ use Illuminate\Auth\Authenticatable;
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 
-class User extends Model implements AuthenticatableContract {
+class User extends Model implements AuthenticatableContract
+{
 
     use Authenticatable;
 
 
     static $rules = [
-		'first_name' => 'required',
-		'email' => 'required',
+        'first_name' => 'required',
+        'email' => 'required',
     ];
 
     protected $perPage = 20;
@@ -42,8 +43,13 @@ class User extends Model implements AuthenticatableContract {
      *
      * @var array
      */
-    protected $fillable = ['first_name','last_name','email', 'password'];
+    protected $fillable = ['first_name', 'last_name', 'email', 'password'];
 
 
-
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
 }

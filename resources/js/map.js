@@ -1,3 +1,4 @@
+// window.prototype = this;
 import 'leaflet.markercluster';
 
 const mapID = document.getElementById('map');
@@ -127,7 +128,7 @@ const setClubesAdultos = (clubes) => {
 
 
 
-getCoordinates = (address) => {
+const getCoordinates = (address) => {
     // console.log(address)
     fetch(`https://nominatim.openstreetmap.org/search?q=${address}&format=json`)
         .then(response => response.json())
@@ -147,21 +148,6 @@ getCoordinates = (address) => {
 
 
 
-function getData(element) {
-    let url = `{{ url('api/${element.id}') }}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (element.id == 'juntas_vecinos') {
-                setJuntasVecinos(data);
-            } else if (element.id == 'clubes_deportivos') {
-                setClubesDeportivos(data);
-            } else if (element.id == 'clubes_adultos') {
-                setClubesAdultos(data);
-            }
-        })
-        .catch(err => console.error(err))
-}
+// window.getData = function (element) {
 
 
