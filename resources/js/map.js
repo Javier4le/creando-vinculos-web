@@ -1,5 +1,5 @@
-// window.prototype = this;
-import 'leaflet.markercluster';
+// import * as L from 'leaflet';
+// import 'leaflet.markercluster';
 
 const mapID = document.getElementById('map');
 const mapContainer = document.getElementById('map-container');
@@ -142,6 +142,24 @@ const getCoordinates = (address) => {
             console.log(coordinates)
             return coordinates
 
+        })
+        .catch(err => console.error(err))
+}
+
+function getData(element) {
+    console.log('hola funcionó')
+    let url = `{{ url('api/${element.id}') }}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (element.id == 'juntas_vecinos') {
+                setJuntasVecinos(data);
+            } else if (element.id == 'clubes_deportivos') {
+                setClubesDeportivos(data);
+            } else if (element.id == 'clubes_adultos') {
+                setClubesAdultos(data);
+            }
         })
         .catch(err => console.error(err))
 }

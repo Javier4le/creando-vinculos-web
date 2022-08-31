@@ -18,19 +18,19 @@
     @yield('styles')
 
     <!-- Leaflet -->
-    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
         crossorigin="" />
-    <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css" /> --}}
-    {{-- <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
         integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         crossorigin=""></script>
-    <script type="text/javascript" src="node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script> --}}
+    {{-- <link rel="stylesheet" href="node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css" /> --}}
+    {{-- <script type="text/javascript" src="node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script> --}}
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Creando Vínculos') }}
@@ -94,7 +94,7 @@
             </div>
         </nav>
 
-        <main>
+        <main class="vh-100 bg-secondary bg-opacity-25">
             @yield('content')
         </main>
     </div>
