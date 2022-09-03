@@ -28,7 +28,7 @@
     {{-- <script type="text/javascript" src="node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script> --}}
 </head>
 
-<body>
+<body class="h-100 bg-secondary bg-opacity-25">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow-sm">
             <div class="container">
@@ -94,7 +94,7 @@
             </div>
         </nav>
 
-        <main class="vh-100 bg-secondary bg-opacity-25">
+        <main>
             @yield('content')
         </main>
     </div>

@@ -1,9 +1,6 @@
 // import * as L from 'leaflet';
 // import 'leaflet.markercluster';
 
-const mapID = document.getElementById('map');
-const mapContainer = document.getElementById('map-container');
-
 const markers = [{
         "name": "Canada",
         "url": "https://en.wikipedia.org/wiki/Canada",
@@ -31,8 +28,14 @@ const markers = [{
 ];
 
 
-const locationPoint = [-33.04, -71.59];
 
+
+const btnContainer = document.getElementById("v-pills-tab");
+
+const mapID = document.getElementById('map');
+const mapContainer = document.getElementById('map-container');
+
+const locationPoint = [-33.04, -71.59];
 
 // Create map
 const map = L.map(mapID, {
@@ -40,7 +43,6 @@ const map = L.map(mapID, {
     zoomAnimation: false,
     markerZoomAnimation: false
 }).setView(locationPoint, 14);
-
 
 // Layer base
 const osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -50,109 +52,38 @@ const osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     reuseTiles: true,
 }).addTo(map);
 
-
-let layerGroup = L.layerGroup();
-layerGroup.clearLayers()
-
+let layerGroup = L.layerGroup().addTo(map);
 
 
 
 
 // Add markers
-markers.forEach((point) => {
-    let marker = L.marker([point.lat, point.lng])
-        .bindPopup(`
-        <li>${point.name}</li>
-        <li>${point.lat}</li>
-        <li>${point.lng}</li>
-    `).addTo(map);
+
+btnContainer.querySelectorAll(".active").forEach(element => {
+    element.addEventListener("active", e => {
+        const id = e.target.getAttribute("id");
+        console.log("Se ha clickeado el id " + id);
+    });
 });
 
 
+window.onload = () => btnContainer.firstElementChild.click();
+
+btnContainer.addEventListener('click', e => {
+    loadData(e.target)
+})
 
 
 
-
-
-
-
-
-
-
-const setJuntasVecinos = (juntas) => {
-    console.log(juntas)
-    juntas.forEach((junta) => {
-        console.log(junta.unidad_vecinal)
-        console.log(junta.direccion)
-        getCoordinates(junta.direccion)
-
-        // console.log(Object.entries(getCoordinates(junta.direccion)))
-
-        // console.log(lat, lng)
-
-
-
-    })
-}
-
-const setClubesDeportivos = (clubes) => {
-    // console.log(clubes)
-    clubes.forEach((club) => {
-        L.marker([getCoordinates(club.direccion)])
-            .bindPopup(`
-                <li>${club.nombre}</li>
-                <li>${club.direccion}</li>
-                <li>${club.sector}</li>
-                <li>${club.encargado}</li>
-                <li>${club.email}</li>
-                <li>${club.estado}</li>
-            `).addTo(map);
-    })
-}
-
-const setClubesAdultos = (clubes) => {
-    // console.log(clubes)
-    clubes.forEach((club) => {
-        // console.log(lat, lng)
-        L.marker([lat, lng])
-            .bindPopup(`
-                <li>${club.nombre}</li>
-                <li>${club.direccion}</li>
-                <li>${club.sector}</li>
-                <li>${club.representante}</li>
-                <li>${club.email}</li>
-                <li>${club.estado}</li>
-            `).addTo(map);
-    })
-}
-
-
-
-const getCoordinates = (address) => {
-    // console.log(address)
-    fetch(`https://nominatim.openstreetmap.org/search?q=${address}&format=json`)
-        .then(response => response.json())
-        .then(data => {
-            // console.log(data[0].lat, data[0].lon)
-
-            let lat = data[0].lat
-            let lng = data[0].lon
-
-            let coordinates = { lat, lng }
-            console.log(coordinates)
-            return coordinates
-
-        })
-        .catch(err => console.error(err))
-}
-
-function getData(element) {
-    console.log('hola funcionó')
-    let url = `{{ url('api/${element.id}') }}`;
+function loadData(element) {
+    // let url = `{{ url('api/${element.id}') }}`;
+    let url = window.location.origin + `/api/${element.id}`;
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
+            layerGroup.clearLayers()
+
             if (element.id == 'juntas_vecinos') {
                 setJuntasVecinos(data);
             } else if (element.id == 'clubes_deportivos') {
@@ -165,7 +96,69 @@ function getData(element) {
 }
 
 
+async function loadAddress(address) {
+    const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${address}&format=json`)
+    return await response.json()
+}
 
-// window.getData = function (element) {
+const getCoordinates = async (address) => {
+    const data = await loadAddress(address)
+    const {
+        lat,
+        lon
+    } = data[0]
+    return [lat, lon]
+}
 
 
+
+const setJuntasVecinos = (juntas) => {
+    juntas.forEach((junta) => {
+        getCoordinates(junta.direccion).then((coordinates) => {
+            L.marker(coordinates)
+                .bindPopup(`
+                   <b>${junta.unidad_vecinal}</b><br>
+                   ${junta.direccion}<br>
+                   ${junta.sector}<br>
+                   ${junta.representante}<br>
+                   ${junta.email}<br>
+                   ${junta.horario}
+                `)
+                .addTo(layerGroup);
+        })
+    })
+}
+
+const setClubesDeportivos = (clubes) => {
+    clubes.forEach((club) => {
+        getCoordinates(club.direccion).then((coordinates) => {
+            L.marker(coordinates)
+                .bindPopup(`
+                   <b>${club.nombre}</b><br>
+                   ${club.direccion}<br>
+                   ${club.sector}<br>
+                   ${club.encargado}<br>
+                   ${club.email}<br>
+                   ${club.estado}
+                `)
+                .addTo(layerGroup);
+        })
+    })
+}
+
+const setClubesAdultos = (clubes) => {
+    clubes.forEach((club) => {
+        getCoordinates(club.direccion).then((coordinates) => {
+            L.marker(coordinates)
+                .bindPopup(`
+                    <b>${club.nombre}</b>
+                    ${club.direccion}<br>
+                    ${club.sector}<br>
+                    ${club.representante}<br>
+                    ${club.email}<br>
+                    ${club.estado}
+                `)
+                .addTo(layerGroup);
+        })
+    })
+}
