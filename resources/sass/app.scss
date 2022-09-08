@@ -10,3 +10,34 @@
 // Custom
 @import 'map';
 @import 'welcome';
+
+
+body {
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),  url('../../public/images/cerro-los-placeres-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.background {
+    min-height: inherit;
+    backdrop-filter: blur(5px);
+}
+
+.active,
+.card-header,
+.bg-item {
+    background-color: rgba(0, 16, 65, 0.78)!important;
+    color: #fff!important;
+}
+
+.card,
+.bg-back {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2)!important;
+    background-color: rgba(255, 255, 255, 0.8);
+    // background-color: rgba(255, 255, 255);
+    // backdrop-filter: blur(4px);
+    border: none;
+}
+
+
