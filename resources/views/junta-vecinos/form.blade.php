@@ -32,7 +32,7 @@
             {{ Form::text('direccion', $juntaVecinos->direccion, ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion']) }}
             {!! $errors->first('direccion', '<div class="invalid-feedback">:message</div>') !!}
 
-            <div>
+            <div class="form-map">
                 @include('layouts.partials.map')
             </div>
         </div>

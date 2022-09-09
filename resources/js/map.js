@@ -48,6 +48,7 @@ const map = L.map(mapID, {
 const osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
     maxZoom: 18,
+    minZoom: 8,
     updateWhenIdle: true,
     reuseTiles: true,
 }).addTo(map);
