@@ -7,9 +7,10 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-// Custom
-@import 'map';
-@import 'welcome';
+// Leaflet
+@import "leaflet";
+// @import "leaflet/dist/leaflet.css";
+
 
 
 
@@ -89,15 +90,59 @@ body {
     }
 }
 
-
-
-.container-fluid .col-md-12 {
+.container-fluid .col-md-7 {
     margin: 0 auto;
-    // width: 58.3%;
-    width: 66.66666667%;
+    // width: 66.66666667%;
 
-    .form-map {
-        margin: 1rem 0;
-    }
 }
+
+
+
+.form-map {
+    margin: 1rem 0;
+    height: 40rem;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    z-index: 8;
+}
+
+
+// .box > .box-body > .form-group
+.autocomplete {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.autocomplete-items {
+    z-index: 9;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #d4d4d4;
+    border-top: none;
+    border-bottom: none;
+}
+
+.autocomplete-items div {
+    border-bottom: 1px solid #d4d4d4;
+    background-color: #fff;
+    padding: 10px;
+    color: #000;
+    cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+    background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+    background-color: dodgerblue !important;
+    color: #fff;
+}
+
 

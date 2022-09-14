@@ -6,15 +6,6 @@
 
 
 @section('content')
-    {{-- <div class="row w-25 justify-content-md-center">
-            <input id="search" style="width: 350px;" type="text">
-            <button type="button" class=" btn btn-primary" id="search-button">Search</button>
-        </div>
-        <ul id="result-list" class="col-4 list-group"></ul> --}}
-
-
-    {{-- <div class="container-fluid shadow"> --}}
-
     <div class="row text-light bg-back rounded" style="min-height: 75vh;">
 
         <div class="col-4">
@@ -48,10 +39,10 @@
         </div>
 
     </div>
-    {{-- </div> --}}
 @endsection
 
 @push('scripts')
     <!-- Scripts -->
-    @vite(['resources/sass/welcome.scss', 'resources/js/welcome.js'])
+    {{-- @vite(['resources/sass/welcome.scss', 'resources/js/welcome.js']) --}}
+    @vite(['resources/js/welcome.js'])
 @endpush

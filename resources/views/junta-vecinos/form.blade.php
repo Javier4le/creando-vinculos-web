@@ -28,11 +28,13 @@
             {!! $errors->first('horario', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('direccion') }}
-            {{ Form::text('direccion', $juntaVecinos->direccion, ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion']) }}
-            {!! $errors->first('direccion', '<div class="invalid-feedback">:message</div>') !!}
+            <div class="autocomplete">
+                {{ Form::label('direccion') }}
+                {{ Form::text('direccion', $juntaVecinos->direccion, ['class' => 'form-control' . ($errors->has('direccion') ? ' is-invalid' : ''), 'placeholder' => 'Direccion', 'autocomplete' => 'off']) }}
+                {!! $errors->first('direccion', '<div class="invalid-feedback">:message</div>') !!}
+            </div>
 
-            <div class="form-map">
+            <div class="form-map" id="map-container">
                 @include('layouts.partials.map')
             </div>
         </div>
@@ -41,3 +43,10 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>
+
+
+
+@push('scripts')
+    <!-- Scripts -->
+    @vite(['resources/js/form.js'])
+@endpush
